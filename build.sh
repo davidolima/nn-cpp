@@ -1,3 +1,3 @@
 #!/usr/bin/env sh
 
-g++ main.cpp -o main.o
+g++ -o main.o main.cpp la.cpp
