@@ -9,7 +9,7 @@ namespace la {
   class Matrix {
     public:
     Matrix(int rows, int cols){
-      this->elements = (float*) malloc(rows*cols);
+      this->elements = (float*) malloc(rows*cols*sizeof(float));
       this->rows = rows;
       this->cols = cols;
     }
