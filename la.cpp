@@ -18,13 +18,24 @@ Matrix Matrix::mm(Matrix other){
   return c;
 }
 
-void Matrix::add(Matrix other){
+void Matrix::add_(Matrix other){
   // In-place addition the elements of matrix "other" to the given matrix.
   for (int i = 0; i < this->rows; i++){
     for (int j = 0; j < this->cols; j++){
       *this->at(i,j) += *other.at(i,j);
     }
   }
+}
+
+Matrix Matrix::add(Matrix other){
+  // Not-in-place addition
+  Matrix result(this->rows, this->cols);
+  for (int i = 0; i < this->rows; i++){
+    for (int j = 0; j < this->cols; j++){
+      *result.at(i, j) = *this->at(i, j) + *other.at(i, j);
+    }
+  }
+  return result;
 }
 
 void Matrix::print(){
