@@ -42,5 +42,5 @@ void Matrix::print(){
 float* Matrix::at(int i, int j){
   // Returns a pointer to the element (i,j) of the given matrix.
   // Made this way so it's easy to modify the element.
-  return &this->elements[i*this->rows+j];
+  return &this->elements[i*this->cols+j];
 }
