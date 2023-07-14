@@ -55,3 +55,25 @@ float* Matrix::at(int i, int j){
   // Made this way so it's easy to modify the element.
   return &this->elements[i*this->rows+j];
 }
+
+Matrix Matrix::zeroes(int rows, int cols){
+  // Returns a matrix of zeros of the given size.
+  Matrix m(rows, cols);
+  for (int i = 0; i < rows; i++){
+    for (int j = 0; j < cols; j++){
+      *m.at(i,j) = 0.0;
+    }
+  }
+  return m;
+}
+
+Matrix Matrix::ones(int rows, int cols){
+  // Returns a matrix of ones of the given size.
+  Matrix m(rows, cols);
+  for (int i = 0; i < rows; i++){
+    for (int j = 0; j < cols; j++){
+      *m.at(i,j) = 1.0;
+    }
+  }
+  return m;
+}

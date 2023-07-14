@@ -8,6 +8,16 @@ namespace nn {
 namespace la {
   class Matrix {
     public:
+      // Note:
+      // The class should have default constructor, otherwise assignments like
+      // Matrix a = b will not work, since this call the default constructor
+      // for a first, then the copy operation
+      Matrix(){
+        this->elements = nullptr;
+        this->rows = 0;
+        this->cols = 0;
+      }
+
       Matrix(int rows, int cols){
         this->elements = (float*) malloc(rows*cols*sizeof(float));
         this->rows = rows;
@@ -26,6 +36,8 @@ namespace la {
 
       float* at(int i, int j);
       void print(void);
+      static Matrix zeroes(int rows, int cols);
+      static Matrix ones(int rows, int cols);
       int rows;
       int cols;
       float* elements;
