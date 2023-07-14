@@ -2,9 +2,6 @@
 #define NETWORK_H_
 #include <math.h>
 
-namespace nn {
-}
-
 namespace la {
   class Matrix {
     public:
@@ -21,5 +18,24 @@ namespace la {
     int cols;
     float* elements;
   };
+
 }
+
+namespace nn {
+  // Returns a number between 1 and 0.
+  extern float randf();
+
+  // TODO: Support for multiple layers
+  class Network{
+    public:
+    Network(int num_neurons, bool zeroed);
+    Network(int num_neurons);
+    void print();
+    la::Matrix* weights;
+    la::Matrix* biases;
+    private:
+    int num_neurons;
+  };
+}
+
 #endif // NETWORK_H_
