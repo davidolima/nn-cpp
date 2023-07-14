@@ -27,6 +27,8 @@ namespace la {
 
       float* at(int i, int j);
       void print(void);
+      static Matrix zeroes(int rows, int cols);
+      static Matrix ones(int rows, int cols);
       int rows;
       int cols;
       float* elements;
