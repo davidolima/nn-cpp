@@ -2,15 +2,17 @@
 #include <stdlib.h>
 
 #include "nn.h"
+#include <cassert>
 
 using namespace la;
 
 Matrix Matrix::mm(Matrix other){
   // Matrix multiplication. Returns the result of the operation.
+  assert(this->cols == other.rows);
   Matrix c (this->rows, other.cols);
   for (int i = 0; i < this->rows; i++){
-    for (int j = 0; j < this->cols; j++){
-      for (int k = 0; k < (int) sizeof(this->cols); k++){
+    for (int j = 0; j < other.cols; j++){
+      for (int k = 0; k < this->cols; k++){
         *c.at(i,j) += *this->at(i,k) * *other.at(k,j);
       }
     }
