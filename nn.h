@@ -7,7 +7,7 @@ namespace la {
   class Matrix {
     public:
     Matrix(int rows, int cols){
-      this->elements = (float*) calloc(rows*cols, sizeof(float));
+      this->elements = (float*) calloc((rows+1)*(cols+1), sizeof(float));
       if (this->elements == NULL) {
         printf("Error allocating memory for matrix. Tried to allocate %zu bytes.\n", (rows*cols*sizeof(float)));
         exit (EXIT_FAILURE);
