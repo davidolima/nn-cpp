@@ -1,12 +1,17 @@
 #ifndef NETWORK_H_
 #define NETWORK_H_
 #include <math.h>
+#include <iostream>
 
 namespace la {
   class Matrix {
     public:
     Matrix(int rows, int cols){
-      this->elements = (float*) malloc(rows*cols*sizeof(float));
+      this->elements = (float*) calloc(rows*cols, sizeof(float));
+      if (this->elements == NULL) {
+        printf("Error allocating memory for matrix. Tried to allocate %zu bytes.\n", (rows*cols*sizeof(float)));
+        exit (EXIT_FAILURE);
+      }
       this->rows = rows;
       this->cols = cols;
     }
@@ -17,6 +22,10 @@ namespace la {
     int rows;
     int cols;
     float* elements;
+    float det();
+    Matrix submat(int x0, int x1, int y0, int y1);
+  private:
+    float* allocMat();
   };
 
 }

@@ -1,3 +1,4 @@
 #!/usr/bin/env sh
 
-g++ -o main.o main.cpp nn.cpp la.cpp
+g++ -Wall -Wextra -Wpedantic -o main.o *.cpp
+g++ -Wall -Wextra -Wpedantic -o tests.o tests/*.cpp nn.cpp la.cpp
