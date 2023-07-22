@@ -1,16 +1,15 @@
 # Simple Neural Network in C++ 
 
-*This repository was created as a personal project.*
+*This repository was created as a hobby project.*
 
 ## About
 The plan is to create a very basic framework capable of creating and training neural networks.
 I decided to create this project to better understand the inner workings of artificial intelligence and to improve my C++.
 
-## Run
-To run just build the main file.
+## Compilation
 
 ``` shell
-./build.sh && ./main.o
+./build.sh
 ```
 
 ## Linear algebra API
@@ -42,5 +41,3 @@ To run just build the main file.
   printf("(A+B)xB = ");
   C.print();
 ```
-
-`
