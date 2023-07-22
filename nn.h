@@ -35,6 +35,7 @@ namespace nn {
     la::Matrix* biases;
     private:
     int num_neurons;
+    float accuracy(la::Matrix training_set);
   };
 }
 
