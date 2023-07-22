@@ -59,6 +59,6 @@ namespace nn {
     int num_neurons;
     float accuracy(la::Matrix training_set);
   };
-}
 
+}
 #endif // NETWORK_H_
