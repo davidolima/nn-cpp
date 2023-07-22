@@ -39,6 +39,10 @@ Matrix Matrix::operator*(Matrix other){
   return this->mm(other); // FIXME: change to fast multiplication
 }
 
+bool Matrix::operator!=(Matrix other){
+  return !(*this == other);
+}
+
 bool Matrix::operator==(Matrix other){
   // same size
   bool eq = (this->rows == other.rows) && (this->cols == other.cols);

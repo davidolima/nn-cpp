@@ -18,7 +18,7 @@ namespace la {
     
     // operations
     Matrix mm(Matrix other);
-    void add(Matrix other);
+    Matrix add(Matrix other);
     void add_(Matrix other);
     Matrix operator+(void); // unary plus
     Matrix operator+(Matrix other); // binary plus
@@ -27,6 +27,7 @@ namespace la {
     Matrix operator*(Matrix other); // multiplication operator
     void operator+=(Matrix other);
     bool operator==(Matrix other);
+    bool operator!=(Matrix other);
     
     float* at(int i, int j);
     void print(void);
@@ -35,6 +36,7 @@ namespace la {
     float* elements;
     float det();
     Matrix submat(int x0, int x1, int y0, int y1);
+    Matrix submat(int p, int q);
   private:
     float* allocMat();
   };
