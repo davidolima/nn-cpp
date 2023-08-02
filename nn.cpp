@@ -23,3 +23,12 @@ void Network::print(){
   printf("\nbiases = ");
   this->biases->print();
 }
+
+float accuracy(la::Matrix training_set) {
+  //TODO
+  float acc = 0.f;
+  for (int i = 0; i < training_set.rows; i++){
+
+  }
+  return acc/training_set.rows;
+}
