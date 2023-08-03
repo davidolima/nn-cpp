@@ -34,7 +34,11 @@ bool readme(){
 
 bool matrix_creation(){
   printf("%s:", __func__);
-  std::vector<std::vector<float>> elements = {{1,2,3},{4,5,6}, {7,8,9}};
+  std::vector<std::vector<float>> elements = {
+     {1,2,3},
+     {4,5,6},
+     {7,8,9}
+  };
   Matrix A = la::fromVector(elements);
   Matrix B = la::generic(3,3);
 
@@ -47,7 +51,10 @@ bool matrix_creation(){
     return false;
   }
 
-  A = {{1,2,3}, {4,5,6}, {7,8,9}};
+  A = {{1,2,3},
+       {4,5,6},
+       {7,8,9}};
+
   if (A != B){
     printf("[!] Matrix from initializer_list diverged from construction\n");
     printf("From vector = ");
@@ -84,6 +91,44 @@ bool trace(){
     printf("B = ");
     B.print();
     printf("tr(A) = %f\ntr(B) = %f", A.trace(), B.trace());
+    return false;
+  }
+
+  return true;
+}
+
+bool at(){
+  printf("%s:", __func__);
+  Matrix A = la::identity(3);
+  Matrix B (3,3);
+
+  *B.at(0,0) = 1;
+  *B.at(1,1) = 1;
+  *B.at(2,2) = 1;
+
+  if (A != B){
+    printf("A = "); A.print();
+    printf("B = "); B.print();
+    return false;
+  }
+
+  A = la::generic(3,3);
+
+  *B.at(0,0) = 1;
+  *B.at(0,1) = 2;
+  *B.at(0,2) = 3;
+
+  *B.at(1,0) = 4;
+  *B.at(1,1) = 5;
+  *B.at(1,2) = 6;
+
+  *B.at(2,0) = 7;
+  *B.at(2,1) = 8;
+  *B.at(2,2) = 9;
+
+  if (A != B){
+    printf("A = "); A.print();
+    printf("B = "); B.print();
     return false;
   }
 
@@ -243,6 +288,7 @@ bool matrixMultiplication(){
 
 int main(){
   bool (*tests[])() = {
+    at,
     readme,
     determinant,
     matrixMultiplication,

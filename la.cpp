@@ -59,7 +59,7 @@ float* Matrix::at(int i, int j){
   // Returns a pointer to the element (i,j) of the given matrix.
   // Made this way so it's easy to modify the element.
   assert(i <= this->rows && j <= this->cols);
-  return &this->elements[i*this->rows/sizeof(float)+j];
+  return &this->elements[i*this->rows+j];
  }
 
 
@@ -79,15 +79,13 @@ Matrix Matrix::submat(int row_start, int col_start,
     assert(false);
   }
 
-  printf("Starting point:(row %d, col %d), End point:(row %d, col %d)\n", row_start, col_start, row_end, col_end);
   int s_rows = (row_end-row_start);
   int s_cols = (col_end-col_start);
   Matrix sub = Matrix(s_rows, s_cols);
 
-  for (int i = 0; i < s_rows; i++){
-    for (int j = 0; j < s_cols; j++){
-      //printf(" %.2f |",*this->at(row_start+i, col_start+j));
-      *sub.at(i,j) = *this->at(row_start+i, col_start+j);
+  for (int i = 0; i < s_rows; i++) {
+    for (int j = 0; j < s_cols; j++) {
+      *sub.at(i,j) = *this->at(row_start+i,col_start+j); //this->elements[(row_start+i)*this->rows/sizeof(float)+(col_start+j)];
     }
   }
 

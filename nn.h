@@ -8,7 +8,7 @@ namespace la {
   class Matrix {
     public:
     Matrix(int rows, int cols){
-      this->elements = (float*) calloc((rows+1)*(cols+1), sizeof(float));
+      this->elements = (float*) malloc((rows+2)*(cols+2)*sizeof(float));
       if (this->elements == NULL) {
         printf("Error allocating memory for matrix. Tried to allocate %zu bytes.\n", (rows*cols*sizeof(float)));
         exit (EXIT_FAILURE);
@@ -19,16 +19,14 @@ namespace la {
     }
 
     Matrix(std::initializer_list<std::initializer_list<float>> elements){
-      std::initializer_list<std::initializer_list<float>>::iterator col_it = elements.begin();
-      *this = Matrix(elements.size(), (*col_it).size());
-      int j = 0;
-      int i = 0;
-      for (; col_it != elements.end(); col_it++){
-        for (std::initializer_list<float>::iterator row_it = col_it->begin(); row_it != col_it->end(); row_it++){
-          *this->at(i,j) = *row_it;
-          j++;
+      std::initializer_list<std::initializer_list<float>>::iterator row_it = elements.begin();
+      *this = Matrix(elements.size(), (*row_it).size());
+
+      for (int i = 0; i != this->rows; row_it++, i++){
+        int j = 0;
+        for (std::initializer_list<float>::iterator col_it = row_it->begin(); col_it != row_it->end(); col_it++, j++){
+          *this->at(i,j) = *col_it;
         }
-        j=0; i++;
       }
     }
 
