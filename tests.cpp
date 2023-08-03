@@ -200,8 +200,8 @@ bool submat(){
     {6}
   };
 
-  Matrix C = A.submat(2,2,
-                      3,2);
+  Matrix C = A.submat(1,1,
+                      2,1);
 
   Matrix D = A.submat(0,0);
 
@@ -222,6 +222,35 @@ bool submat(){
       printf("B = ");
       B.print();
     }
+    return false;
+  }
+  Matrix E = la::generic(6,3);
+  Matrix E1_gt = {
+    {1,   2},
+    {4,   5},
+    {7,   8},
+    {10, 11},
+    {13, 14},
+    {16, 17},
+  };
+  Matrix E2_gt = {
+  {3},
+  {6},
+  {9},
+  {12},
+  {15},
+  {18},
+  };
+
+  Matrix E1 = E.submat(0     , 0,
+                       E.rows, E.cols-1);
+  Matrix E2 = E.submat(0     , E.cols-1,
+                       E.rows, E.cols-1);
+
+  if (E1_gt != E1 || E2_gt != E2){
+    E.print();
+    E1.print();
+    E2.print();
     return false;
   }
   return true;
