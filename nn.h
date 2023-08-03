@@ -15,8 +15,23 @@ namespace la {
       }
       this->rows = rows;
       this->cols = cols;
+      this->fill(0.f);
     }
-    
+
+    Matrix(std::initializer_list<std::initializer_list<float>> elements){
+      std::initializer_list<std::initializer_list<float>>::iterator col_it = elements.begin();
+      *this = Matrix((*col_it).size(), elements.size());
+      int j = 0;
+      int i = 0;
+      for (; col_it != elements.end(); col_it++){
+        for (std::initializer_list<float>::iterator row_it = col_it->begin(); row_it != col_it->end(); row_it++){
+          *this->at(i,j) = *row_it;
+          j++;
+        }
+        j=0; i++;
+      }
+    }
+
     // operations
     Matrix mm(Matrix other);
     Matrix add(Matrix other);
