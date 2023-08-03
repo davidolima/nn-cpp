@@ -19,7 +19,7 @@ namespace la {
       }
 
       Matrix(int rows, int cols){
-        this->elements = (float*) malloc(rows*cols*sizeof(float));
+        this->elements = (float*) malloc((rows + 2)*(cols + 2)*sizeof(float));
         this->rows = rows;
         this->cols = cols;
       }

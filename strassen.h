@@ -18,5 +18,5 @@ namespace strassen{
       Matrix join();
   };
 
-  Matrix strassen_mm(Matrix, Matrix);
+  Matrix mm(Matrix, Matrix);
 }

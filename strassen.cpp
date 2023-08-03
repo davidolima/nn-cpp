@@ -9,7 +9,7 @@ using namespace la;
 Matrix strassen::fill_to_power2(Matrix m){
   auto get_geq_power2 = [](int x){
     if (x <= 1){
-      return 1;
+      return 2; // always assure dim >= 2, see NOTE
     } else{
       // __builtin_clz = leading 0s in binary representation
       long unsigned int ceil_log2 = sizeof(int) * 8  -__builtin_clz(x - 1);
@@ -46,6 +46,9 @@ strassen::BlockMatrix::BlockMatrix(Matrix topleft, Matrix topright, Matrix botto
 }
 
 strassen::BlockMatrix::BlockMatrix(Matrix m){
+  // NOTE: this division in (r/2, c/2) fails if r or c are odd
+  // (ex.: 1)
+
   Matrix filled_m = fill_to_power2(m);
   int r = filled_m.rows, c = filled_m.cols;
   this->topleft = Matrix::zeroes(r / 2, c / 2);
@@ -100,7 +103,7 @@ Matrix strassen::BlockMatrix::join(){
 }
 
 
-Matrix strassen::strassen_mm(Matrix A, Matrix B){
+Matrix strassen::mm(Matrix A, Matrix B){
   assert(A.cols == B.rows);
   if (A.rows < min_size && A.cols < min_size && B.rows < min_size && B.cols < min_size){
     return A * B;
@@ -126,13 +129,13 @@ Matrix strassen::strassen_mm(Matrix A, Matrix B){
   Matrix B22 = BlockB.bottomright;
 
 
-  Matrix M1 = strassen_mm((A11 + A22), (B11 + B22));
-  Matrix M2 = strassen_mm((A21 + A22), B11);
-  Matrix M3 = strassen_mm(A11, (B12 - B22));
-  Matrix M4 = strassen_mm(A22, (B21 - B11));
-  Matrix M5 = strassen_mm((A11 + A12),  B22);
-  Matrix M6 = strassen_mm((A21 - A11),  (B11 + B12));
-  Matrix M7 = strassen_mm((A12 - A22), (B21 + B22));
+  Matrix M1 = mm((A11 + A22), (B11 + B22));
+  Matrix M2 = mm((A21 + A22), B11);
+  Matrix M3 = mm(A11, (B12 - B22));
+  Matrix M4 = mm(A22, (B21 - B11));
+  Matrix M5 = mm((A11 + A12),  B22);
+  Matrix M6 = mm((A21 - A11),  (B11 + B12));
+  Matrix M7 = mm((A12 - A22), (B21 + B22));
 
   BlockMatrix BlockC = BlockMatrix(M1 + M4 - M5 + M7,
                                   M3 + M5,
