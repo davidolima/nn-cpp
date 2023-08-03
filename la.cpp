@@ -59,24 +59,35 @@ float* Matrix::at(int i, int j){
   // Returns a pointer to the element (i,j) of the given matrix.
   // Made this way so it's easy to modify the element.
   assert(i <= this->rows && j <= this->cols);
-  return &this->elements[i*this->rows+j];
+  return &this->elements[i*this->rows/sizeof(float)+j];
  }
 
-Matrix Matrix::submat(int x0, int y0, int x1, int y1) {
+
+Matrix Matrix::submat(int row_start, int col_start,
+                      int row_end, int col_end) {
   /*
    *   Submatrix given by a region of a given matrix.
    */
 
   // adding two to compensate starting at index 0.
-  assert(x0<=x1 && y0<=y1);
+  if (row_start == 0 && col_start == 0 &&
+      row_end == this->rows && col_end == this->cols){
+    return *this;
+  } else if (row_start>row_end || col_start>col_end){
+    printf("Error: Start point should come before end point.\n");
+    printf("Starting point:(%d,%d), End point:(%d,%d)\n", col_start, row_start, col_end, row_end);
+    assert(false);
+  }
 
-  int sub_rows = (x1-x0)+1;
-  int sub_cols = (y1-y0)+1;
-  Matrix sub = Matrix(sub_rows, sub_cols);
+  printf("Starting point:(row %d, col %d), End point:(row %d, col %d)\n", row_start, col_start, row_end, col_end);
+  int s_rows = (row_end-row_start);
+  int s_cols = (col_end-col_start);
+  Matrix sub = Matrix(s_rows, s_cols);
 
-  for (int j = 0; j < sub_cols; j++){
-    for (int i = 0; i < sub_rows; i++){
-      *sub.at(i,j) = *this->at(x0+i-1,y0+j-1);
+  for (int i = 0; i < s_rows; i++){
+    for (int j = 0; j < s_cols; j++){
+      //printf(" %.2f |",*this->at(row_start+i, col_start+j));
+      *sub.at(i,j) = *this->at(row_start+i, col_start+j);
     }
   }
 

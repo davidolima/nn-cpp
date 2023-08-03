@@ -138,12 +138,9 @@ bool fill_and_identity(){
 
   if (A*B != A) {
     printf("[!] Multiplication with identity returns a different matrix.\n");
-    printf("A = ");
-    A.print();
-    printf("Identity = ");
-    B.print();
-    printf("Multiplication result = ");
-    (A*B).print();
+    printf("A = "); A.print();
+    printf("Identity = "); B.print();
+    printf("Multiplication result = "); (A*B).print();
     return false;
   }
 
@@ -164,6 +161,8 @@ bool submat(){
   Matrix D = A.submat(0,0);
 
   if (C != B || D != B){
+    printf("A = ");
+    A.print();
     if (C != B){
       printf("[!] C not equal to B.\n");
       printf("C = ");

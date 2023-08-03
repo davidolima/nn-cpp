@@ -59,7 +59,6 @@ namespace la {
     Matrix submat(int x0, int x1, int y0, int y1);
     Matrix submat(int p, int q);
   private:
-    float* allocMat();
   };
   Matrix identity(int size);
   Matrix ones(int rows, int cols);
