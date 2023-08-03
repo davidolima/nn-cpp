@@ -2,6 +2,7 @@
 #define NETWORK_H_
 #include <math.h>
 #include <iostream>
+#include <vector>
 
 namespace la {
   class Matrix {
@@ -26,6 +27,7 @@ namespace la {
     Matrix operator-(Matrix other); // binary plus
     Matrix operator*(Matrix other); // multiplication operator
     void operator+=(Matrix other);
+    void operator-=(Matrix other);
     bool operator==(Matrix other);
     bool operator!=(Matrix other);
     
@@ -35,12 +37,19 @@ namespace la {
     int cols;
     float* elements;
     float det();
+    Matrix transpose();
+    void transpose_();
+    float trace();
+    void fill(float value);
     Matrix submat(int x0, int x1, int y0, int y1);
     Matrix submat(int p, int q);
   private:
     float* allocMat();
   };
-
+  Matrix identity(int size);
+  Matrix ones(int rows, int cols);
+  Matrix generic(int rows, int cols);
+  Matrix fromVector(std::vector<std::vector<float>> elements);
 }
 
 namespace nn {

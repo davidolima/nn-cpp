@@ -107,6 +107,7 @@ Matrix Matrix::submat(int p, int q){
 }
 
 float Matrix::det(){
+  assert(this->rows == this->cols);
   // Laplace Expansion
   if (this->rows == 2 && this->cols == 2){
     // | a b |
@@ -122,4 +123,73 @@ float Matrix::det(){
     r += pow(-1,0+j)**this->at(0,j)*this->submat(0,j).det();
   }
   return r;
+}
+
+Matrix Matrix::transpose(){
+  Matrix t = *this;
+  t.transpose_();
+  return t;
+}
+
+void Matrix::transpose_(){
+  Matrix t(this->cols, this->rows);
+  for (int j = 0; j < this->cols; j++){
+    for (int i = 0; i < this->rows; i++){
+      *t.at(j,i) = *this->at(i,j);
+    }
+  }
+  *this = t;
+}
+
+float Matrix::trace(){
+  assert(this->cols == this->rows);
+  float tr = 0.f;
+  for (int i = 0; i < this->cols; i++){
+      tr += *this->at(i, i);
+  }
+  return tr;
+}
+
+void Matrix::fill(float value){
+  for (int j = 0; j < this->cols; j++){
+    for (int i = 0; i < this->rows; i++){
+      *this->at(i,j) = value;
+    }
+  }
+}
+
+Matrix la::identity(int size){
+  Matrix A(size, size);
+  for (int i = 0; i < size; i++){
+    *A.at(i,i) = 1;
+  }
+  return A;
+}
+
+Matrix la::ones(int rows, int cols){
+  Matrix A(rows, cols);
+  A.fill(1.f);
+  return A;
+}
+
+Matrix la::generic(int rows, int cols){
+  Matrix A(rows, cols);
+  int c = 1;
+  for (int j = 0; j < 3; j++){
+    for (int i = 0; i < 3; i++){
+      *A.at(j,i) = c;
+      c++;
+    }
+  }
+  return A;
+}
+
+Matrix la::fromVector(std::vector<std::vector<float>> elements){
+  Matrix A(elements[0].size(), elements.size());
+  for (int j = 0; j < 3; j++){
+    for (int i = 0; i < 3; i++){
+      *A.at(i,j) = elements[i][j];
+    }
+  }
+  return A;
 }
