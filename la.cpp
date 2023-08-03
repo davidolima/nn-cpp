@@ -25,7 +25,6 @@ void Matrix::add_(Matrix other){
   // In-place addition the elements of matrix "other" to the given matrix.
   for (int i = 0; i < this->rows; i++){
     for (int j = 0; j < this->cols; j++){
-      printf("%f + %f = %f\n", *this->at(i,j), *other.at(i,j), *other.at(i,j)+*this->at(i,j));
       *this->at(i,j) += *(other.at(i,j));
     }
   }
