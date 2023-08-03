@@ -125,18 +125,11 @@ bool fill_and_identity(){
 
 bool submat(){
   printf("%s:", __func__);
-  Matrix A = Matrix(3, 2);
-
-  *A.at(0,0) = 1;
-  *A.at(0,1) = 2;
-  *A.at(1,0) = 3;
-  *A.at(1,1) = 4;
-  *A.at(2,0) = 5;
-  *A.at(2,1) = 6;
-
-  Matrix B = Matrix(2,1);
-  *B.at(0,0) = 4;
-  *B.at(1,0) = 6;
+  Matrix A = la::generic(3, 2);
+  Matrix B = {
+    {4},
+    {6}
+  };
 
   Matrix C = A.submat(2,2,
                       3,2);
@@ -165,22 +158,11 @@ bool submat(){
 
 bool determinant(){
   printf("%s:", __func__);
-  Matrix A = Matrix(3,3);
-  // 6 1 1
-  // 4 -2 5
-  // 2 8 7
-
-  *A.at(0,0) = 6;
-  *A.at(0,1) = 1;
-  *A.at(0,2) = 1;
-
-  *A.at(1,0) = 4;
-  *A.at(1,1) = -2;
-  *A.at(1,2) = 5;
-
-  *A.at(2,0) = 2;
-  *A.at(2,1) = 8;
-  *A.at(2,2) = 7;
+  Matrix A = {
+    {6,  1, 1},
+    {4, -2, 5},
+    {2,  8, 7}
+  };
 
   //printf("det(A) = %f\n", A.det());
 
@@ -190,35 +172,13 @@ bool determinant(){
 
   A = Matrix(5,5);
 
-  *A.at(0,0) = 1;
-  *A.at(0,1) = 4;
-  *A.at(0,2) = 5;
-  *A.at(0,3) = 5;
-  *A.at(0,4) = 4;
-
-  *A.at(1,0) = 2;
-  *A.at(1,1) = 3;
-  *A.at(1,2) = 5;
-  *A.at(1,3) = 5;
-  *A.at(1,4) = 3;
-
-  *A.at(2,0) = 3;
-  *A.at(2,1) = 2;
-  *A.at(2,2) = 4;
-  *A.at(2,3) = 4;
-  *A.at(2,4) = 2;
-
-  *A.at(3,0) = 4;
-  *A.at(3,1) = 1;
-  *A.at(3,2) = 2;
-  *A.at(3,3) = 3;
-  *A.at(3,4) = 1;
-
-  *A.at(4,0) = 5;
-  *A.at(4,1) = 5;
-  *A.at(4,2) = 4;
-  *A.at(4,3) = 3;
-  *A.at(4,4) = 2;
+  A = {
+    {1,4,5,5,4},
+    {2,3,5,5,3},
+    {3,2,4,4,2},
+    {4,1,2,3,1},
+    {5,5,4,3,2}
+  };
 
   //printf("det(A) = %f\n", A.det());
   if (A.det() != -15){
