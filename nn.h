@@ -20,7 +20,7 @@ namespace la {
 
     Matrix(std::initializer_list<std::initializer_list<float>> elements){
       std::initializer_list<std::initializer_list<float>>::iterator col_it = elements.begin();
-      *this = Matrix((*col_it).size(), elements.size());
+      *this = Matrix(elements.size(), (*col_it).size());
       int j = 0;
       int i = 0;
       for (; col_it != elements.end(); col_it++){
