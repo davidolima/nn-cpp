@@ -151,8 +151,8 @@ float Matrix::trace(){
 }
 
 void Matrix::fill(float value){
-  for (int j = 0; j < this->cols; j++){
-    for (int i = 0; i < this->rows; i++){
+  for (int i = 0; i < this->rows; i++){
+    for (int j = 0; j < this->cols; j++){
       *this->at(i,j) = value;
     }
   }
@@ -175,9 +175,9 @@ Matrix la::ones(int rows, int cols){
 Matrix la::generic(int rows, int cols){
   Matrix A(rows, cols);
   int c = 1;
-  for (int j = 0; j < 3; j++){
-    for (int i = 0; i < 3; i++){
-      *A.at(j,i) = c;
+  for (int i = 0; i < rows; i++){
+    for (int j = 0; j < cols; j++){
+      *A.at(i, j) = c;
       c++;
     }
   }
@@ -186,8 +186,8 @@ Matrix la::generic(int rows, int cols){
 
 Matrix la::fromVector(std::vector<std::vector<float>> elements){
   Matrix A(elements[0].size(), elements.size());
-  for (int j = 0; j < 3; j++){
-    for (int i = 0; i < 3; i++){
+  for (int i = 0; i < A.rows; i++){
+    for (int j = 0; j < A.cols; j++){
       *A.at(i,j) = elements[i][j];
     }
   }
