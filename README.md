@@ -13,31 +13,44 @@ I decided to create this project to better understand the inner workings of arti
 ```
 
 ## Linear algebra API
+Here are a few examples of what you can do with our linear algebra api.
 ``` c++
-  Matrix A(2,2);
-  Matrix B(2,2);
+  Matrix A = {
+    {1, 2},
+    {3, 4}
+  };
 
-  *A.at(0,0) = 0;
-  *A.at(0,1) = 1;
-  *A.at(1,0) = 2;
-  *A.at(1,1) = 3;
+  Matrix B = A.transpose();
 
-  *B.at(0,0) = 4;
-  *B.at(0,1) = 5;
-  *B.at(1,0) = 6;
-  *B.at(1,1) = 7;
+  Matrix C = A + B;
+  Matrix D = A * B;
+
+  Matrix I = la::identity(2);
+
+  A = A * I;
+  B = B * I;
+  C = C * I;
+  D = D * I;
 
   printf("A = ");
   A.print();
   printf("B = ");
   B.print();
-
-  A.add(B);
-  printf("A + B = ");
-  A.print();
-
-  Matrix C(2,2);
-  C = A.mm(B);
-  printf("(A+B)xB = ");
+  printf("C = ");
   C.print();
+  printf("D = ");
+  D.print();
+  printf("I = ");
+  I.print();
+
+  printf("det(A) = %f, det(B) = %f, det(C) = %f, det(D) = %f\n", A.det(), B.det(), C.det(), D.det());
+  printf("tr(A) = %f, tr(B) = %f, tr(C) = %f, tr(D) = %f\n", A.trace(), B.trace(), C.trace(), D.trace());
+
+  Matrix E = la::generic(2,2);
+  printf("A = E? ");
+  if (A == E){
+    printf("true\n");
+  } else {
+    printf("false\n");
+  }
 ```
