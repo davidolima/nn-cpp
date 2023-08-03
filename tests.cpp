@@ -341,5 +341,8 @@ int main(){
   }
 
   printf("[!] TEST RESULTS: PASSED %d/%d", passed, total);
+  if (passed != total){
+    return 1;
+  }
   return 0;
 }
