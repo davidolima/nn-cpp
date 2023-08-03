@@ -196,7 +196,8 @@ Matrix la::generic(int rows, int cols){
 }
 
 Matrix la::fromVector(std::vector<std::vector<float>> elements){
-  Matrix A(elements[0].size(), elements.size());
+  //FIXME: inconsistent.
+  Matrix A(elements.size(), elements[0].size());
   for (int i = 0; i < A.rows; i++){
     for (int j = 0; j < A.cols; j++){
       *A.at(i,j) = elements[i][j];
