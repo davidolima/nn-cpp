@@ -1,3 +1,4 @@
+#pragma once
 #ifndef NETWORK_H_
 #define NETWORK_H_
 #include <math.h>
@@ -7,6 +8,16 @@
 namespace la {
   class Matrix {
     public:
+      // Note:
+      // The class should have default constructor, otherwise assignments like
+      // Matrix a = b will not work, since this call the default constructor
+      // for a first, then the copy operation
+      Matrix(){
+        this->elements = nullptr;
+        this->rows = 0;
+        this->cols = 0;
+      }
+
     Matrix(int rows, int cols){
       this->elements = (float*) malloc((rows+2)*(cols+2)*sizeof(float));
       if (this->elements == NULL) {
@@ -58,10 +69,27 @@ namespace la {
     Matrix submat(int p, int q);
   private:
   };
+  // Operations
+  Matrix mm(Matrix, Matrix);
+  Matrix fill_to_power2(Matrix);
+
+  // Construction
   Matrix identity(int size);
   Matrix ones(int rows, int cols);
+  Matrix zeroes(int rows, int cols);
   Matrix generic(int rows, int cols);
   Matrix fromVector(std::vector<std::vector<float>> elements);
+
+  // Strassen
+  const int min_size = 16; // FIXME arbitrary value, for now
+
+  class BlockMatrix{
+    public:
+      Matrix topleft, topright, bottomleft, bottomright;
+      BlockMatrix(Matrix topleft, Matrix topright, Matrix bottomleft, Matrix bottomright);
+      BlockMatrix(Matrix m);
+      Matrix join();
+  };
 }
 
 namespace nn {
@@ -71,14 +99,14 @@ namespace nn {
   // TODO: Support for multiple layers
   class Network{
     public:
-    Network(int num_neurons, bool zeroed);
-    Network(int num_neurons);
-    void print();
-    la::Matrix* weights;
-    la::Matrix* biases;
+      Network(int num_neurons, bool zeroed);
+      Network(int num_neurons);
+      void print();
+      la::Matrix* weights;
+      la::Matrix* biases;
     private:
-    int num_neurons;
-    float accuracy(la::Matrix training_set);
+      int num_neurons;
+      float accuracy(la::Matrix training_set);
   };
 
 }
