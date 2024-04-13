@@ -7,6 +7,37 @@
 
 using namespace la;
 
+void Matrix::multiply_(int scalar){
+  for (int i = 0; i < this->rows; i++){
+    for (int j = 0; j < this->cols; j++){
+      *this->at(i,j) *= scalar;
+    }
+  }
+}
+
+Matrix Matrix::multiply(int scalar){
+  Matrix result(this->rows, this->cols);
+  result.multiply_(scalar);
+  return result;
+
+}
+
+void Matrix::add_(int scalar){
+  for (int i = 0; i < this->rows; i++){
+    for (int j = 0; j < this->cols; j++){
+      *this->at(i,j) += scalar;
+    }
+  }
+}
+
+Matrix Matrix::add(int scalar){
+  // Not-in-place addition
+  Matrix result(this->rows, this->cols);
+  result.add_(scalar);
+  return result;
+}
+
+
 Matrix Matrix::mm(Matrix other){
   // Matrix multiplication. Returns the result of the operation.
   return la::mm(*this, other);
@@ -24,11 +55,7 @@ void Matrix::add_(Matrix other){
 Matrix Matrix::add(Matrix other){
   // Not-in-place addition
   Matrix result(this->rows, this->cols);
-  for (int i = 0; i < this->rows; i++){
-    for (int j = 0; j < this->cols; j++){
-      *result.at(i, j) = *this->at(i, j) + *other.at(i, j);
-    }
-  }
+  result.add_(other);
   return result;
 }
 

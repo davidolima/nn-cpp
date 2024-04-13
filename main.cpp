@@ -46,7 +46,7 @@ int main() {
 
   // net.print();
   Matrix A = generic(5,1);
-  Matrix B = Matrix(5,1); B.fill(2.f); B.transpose_();
+  Matrix B = ones(1,5)*2;
   A.print();
   B.print();
   A.mm(B).print();

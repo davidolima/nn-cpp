@@ -59,3 +59,31 @@ bool Matrix::operator==(Matrix other){
   }
   return eq;
 }
+
+// Scalars
+Matrix Matrix::operator+(int scalar){
+  return this->add(scalar);
+}
+
+Matrix Matrix::operator-(int scalar){
+  return this->add(-scalar);
+}
+
+Matrix Matrix::operator*(int scalar){
+  return this->multiply(scalar);
+}
+
+bool Matrix::operator!=(int scalar){
+  return !(*this == scalar);
+}
+
+bool Matrix::operator==(int scalar){
+  bool eq = true;
+  // same elements
+  for (int i = 0; i < this->rows; i++){
+    for (int j = 0; j < this->cols; j++){
+      eq &= (*(this->at(i, j)) == scalar);
+    }
+  }
+  return eq;
+}

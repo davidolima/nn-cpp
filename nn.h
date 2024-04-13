@@ -45,15 +45,32 @@ namespace la {
     Matrix mm(Matrix other);
     Matrix add(Matrix other);
     void add_(Matrix other);
+    Matrix multiply(int scalar);
+    void multiply_(int scalar);
+    Matrix add(int scalar);
+    void add_(int scalar);
+
+    // Unary Operators
     Matrix operator+(void); // unary plus
-    Matrix operator+(Matrix other); // binary plus
     Matrix operator-(void); // unary minus
+
+    // Matrix operators
+    Matrix operator+(Matrix other); // binary plus
     Matrix operator-(Matrix other); // binary plus
     Matrix operator*(Matrix other); // multiplication operator
     void operator+=(Matrix other);
     void operator-=(Matrix other);
     bool operator==(Matrix other);
     bool operator!=(Matrix other);
+    // Scalar operators
+    Matrix operator+(int scalar); // binary plus
+    Matrix operator-(int scalar); // binary plus
+    Matrix operator*(int scalar); // scalar multiplication
+    void operator+=(int scalar);
+    void operator-=(int scalar);
+    bool operator==(int scalar);
+    bool operator!=(int scalar);
+
     
     float* at(int i, int j);
     void print(void);
