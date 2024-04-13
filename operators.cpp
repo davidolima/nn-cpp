@@ -5,6 +5,10 @@ void Matrix::operator+=(Matrix other){
   this->add_(other);
 }
 
+void Matrix::operator-=(Matrix other){
+  this->add_(-other);
+}
+
 Matrix Matrix::operator+(){
   Matrix result(this->rows, this->cols);
 
