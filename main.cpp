@@ -34,24 +34,21 @@ float criterion(float w, float b){
 }
 
 
-float accuracy(Matrix n){
-  float r = 0.f;
-  for (int i = 0; i < train_size; i++){
-    //float y = n.forward(train_set[i][0]);
-    //r += (y == train_set[i][1]) ? 1 : 0;
-  }
-  return r/train_size;
-}
 
 int main() {
-  srand(time(0));
-  float epsilon = 1e-5;
-  float lr = 1e-3;
-  int epochs = 1000;
+  // srand(time(0));
+  // float epsilon = 1e-5;
+  // float lr = 1e-3;
+  // int epochs = 1000;
 
-  // inicializar modelo
-  Network net(2);
+  // // inicializar modelo
+  // Network net(2);
 
-  net.print();
+  // net.print();
+  Matrix A = generic(5,1);
+  Matrix B = Matrix(5,1); B.fill(2.f); B.transpose_();
+  A.print();
+  B.print();
+  A.mm(B).print();
   return 0;
 }

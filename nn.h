@@ -1,3 +1,4 @@
+#pragma once
 #ifndef NETWORK_H_
 #define NETWORK_H_
 #include <math.h>
@@ -68,22 +69,32 @@ namespace la {
     Matrix submat(int p, int q);
   private:
   };
+  // Operations
+  Matrix mm(Matrix, Matrix);
+  Matrix fill_to_power2(Matrix);
+
+  // Construction
   Matrix identity(int size);
   Matrix ones(int rows, int cols);
+  Matrix zeroes(int rows, int cols);
   Matrix generic(int rows, int cols);
   Matrix fromVector(std::vector<std::vector<float>> elements);
+
+  // Strassen
+  const int min_size = 16; // FIXME arbitrary value, for now
+
+  class BlockMatrix{
+    public:
+      Matrix topleft, topright, bottomleft, bottomright;
+      BlockMatrix(Matrix topleft, Matrix topright, Matrix bottomleft, Matrix bottomright);
+      BlockMatrix(Matrix m);
+      Matrix join();
+  };
 }
 
 namespace nn {
   // Returns a number between 1 and 0.
   extern float randf();
-  float* at(int i, int j);
-  void print(void);
-  static Matrix zeroes(int rows, int cols);
-  static Matrix ones(int rows, int cols);
-  int rows;
-  int cols;
-  float* elements;
 
   // TODO: Support for multiple layers
   class Network{
