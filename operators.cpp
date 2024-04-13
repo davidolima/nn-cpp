@@ -5,6 +5,10 @@ void Matrix::operator+=(Matrix other){
   this->add_(other);
 }
 
+void Matrix::operator-=(Matrix other){
+  this->add_(-other);
+}
+
 Matrix Matrix::operator+(){
   Matrix result(this->rows, this->cols);
 
@@ -37,6 +41,10 @@ Matrix Matrix::operator-(Matrix other){
 
 Matrix Matrix::operator*(Matrix other){
   return this->mm(other); // FIXME: change to fast multiplication
+}
+
+bool Matrix::operator!=(Matrix other){
+  return !(*this == other);
 }
 
 bool Matrix::operator==(Matrix other){

@@ -1,3 +1,4 @@
 #!/usr/bin/env sh
 
-g++ -Wall -Wextra -Wpedantic -o main.o main.cpp la.cpp operators.cpp
+g++ -Wall -Wextra -Wpedantic -o main main.cpp nn.cpp la.cpp operators.cpp -ggdb
+g++ -Wall -Wextra -Wpedantic -o tests tests.cpp nn.cpp la.cpp operators.cpp
