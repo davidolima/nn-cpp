@@ -74,8 +74,8 @@ void Matrix::print(){
 
 float* Matrix::at(int i, int j){
   // Returns a pointer to the element (i,j) of the given matrix.
-  assert(i <= this->rows && j <= this->cols);
-  return this->elements + (i + this->cols*j);
+  assert(i < this->rows && j < this->cols);
+  return &this->elements[i*this->cols + j];
  }
 
 
@@ -179,10 +179,8 @@ float Matrix::trace(){
 }
 
 void Matrix::fill(float value){
-  for (int i = 0; i < this->rows; i++){
-    for (int j = 0; j < this->cols; j++){
-      *this->at(i,j) = value;
-    }
+  for(int i = 0; i < this->rows*this->cols; i++){
+    this->elements[i] = value;
   }
 }
 
