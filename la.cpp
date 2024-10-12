@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <cassert>
+#include <cstring>
 
 #include "nn.h"
 
@@ -15,7 +16,7 @@ void Matrix::multiply_(int scalar){
 }
 
 Matrix Matrix::multiply(int scalar){
-  Matrix result(this->rows, this->cols);
+  Matrix result = this->copy();
   result.multiply_(scalar);
   return result;
 
@@ -31,7 +32,7 @@ void Matrix::add_(int scalar){
 
 Matrix Matrix::add(int scalar){
   // Not-in-place addition
-  Matrix result(this->rows, this->cols);
+  Matrix result = this->copy();
   result.add_(scalar);
   return result;
 }
@@ -53,9 +54,15 @@ void Matrix::add_(Matrix other){
 
 Matrix Matrix::add(Matrix other){
   // Not-in-place addition
-  Matrix result(this->rows, this->cols);
+  Matrix result = this->copy();
   result.add_(other);
   return result;
+}
+
+Matrix Matrix::copy(){
+  Matrix A = Matrix(this->rows, this->cols);
+  memcpy(A.elements, this->elements, this->rows*this->cols*sizeof(float));
+  return A;
 }
 
 void Matrix::print(){
@@ -153,7 +160,7 @@ float Matrix::det(){
 }
 
 Matrix Matrix::transpose(){
-  Matrix t = *this;
+  Matrix t = this->copy();
   t.transpose_();
   return t;
 }

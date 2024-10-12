@@ -63,6 +63,7 @@ namespace la {
     void operator-=(Matrix other);
     bool operator==(Matrix other);
     bool operator!=(Matrix other);
+
     // Scalar operators
     Matrix operator+(int scalar); // binary plus
     Matrix operator-(int scalar); // binary plus
@@ -85,6 +86,7 @@ namespace la {
     void fill(float value);
     Matrix submat(int x0, int x1, int y0, int y1);
     Matrix submat(int p, int q);
+    Matrix copy(void);
   private:
   };
   // Operations
