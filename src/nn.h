@@ -119,14 +119,16 @@ namespace nn {
   // TODO: Support for multiple layers
   class Network{
     public:
-      Network(int num_neurons, bool zeroed);
-      Network(int num_neurons);
+      Network(int input_dim, int hidden_dim, int output_dim);
       void print();
       la::Matrix* weights;
-      la::Matrix* biases;
+      la::Matrix* bias;
     private:
-      int num_neurons;
-      float accuracy(la::Matrix training_set);
+      int input_dim;
+      int hidden_dim;
+      int output_dim;
+      void initialize_params(void);
+      la::Matrix feedforward(la::Matrix X);
   };
 
 }
