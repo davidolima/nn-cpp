@@ -1,17 +1,15 @@
 #include <iostream>
-#include <fstream>
 #include <filesystem>
-#include <stdio.h>
-#include <stdlib.h>
+//#include <stdio.h>
+//#include <stdlib.h>
 #include <string>
 #include <vector>
-#include <assert.h>
 
 using namespace std;
 namespace fs = std::filesystem;
 
 string construct_cmd(string fname, string out_path, string test_path){
-  string cmd_str = "g++ -ggdb -Wall -Wextra -Wpedantic -o" + out_path+fname + ".o " + test_path + fname + ".cpp" + " nn.cpp la.cpp operators.cpp";
+  string cmd_str = "g++ -ggdb -Wall -Wextra -Wpedantic -o" + out_path+fname + ".o " + test_path + fname + ".cpp" + " src/nn.cpp src/la.cpp";
   return cmd_str;
 }
 
@@ -68,9 +66,9 @@ int main(int argc, char *argv[]){
     }
   }
 
-  const string test_path = "./tests/";
+  const string test_path = "./src/tests/";
   const string build_script_path = "./test_build.sh";
-  const string out_path = "./tests/builds/";
+  const string out_path = "./src/tests/builds/";
 
   if (fs::exists(out_path) && FORCE_REBUILD)
     fs::remove_all(out_path);

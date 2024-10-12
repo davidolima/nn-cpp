@@ -1,20 +1,11 @@
-# Simple Neural Network in C++ 
+#include <stdlib.h>
 
-*This repository was created as a hobby project.*
+#include "../src/nn.h"
 
-## About
-The plan is to create a very basic framework capable of creating and training neural networks.
-I decided to create this project to better understand the inner workings of artificial intelligence and to improve my C++.
+using namespace std;
+using namespace la;
 
-## Running tests
-
-``` shell
-./run_tests.sh
-```
-
-## Linear algebra API
-Here are a few examples of what you can do with our linear algebra api.
-``` c++
+int main() {
   Matrix A = {
     {1, 2},
     {3, 4}
@@ -53,4 +44,5 @@ Here are a few examples of what you can do with our linear algebra api.
   } else {
     printf("false\n");
   }
-```
+  return 0;
+}
