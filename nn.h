@@ -1,6 +1,7 @@
 #pragma once
 #ifndef NETWORK_H_
 #define NETWORK_H_
+#include <stdlib.h>
 #include <math.h>
 #include <iostream>
 #include <vector>
@@ -19,8 +20,8 @@ namespace la {
       }
 
     Matrix(int rows, int cols){
-      this->elements = (float*) malloc((rows+2)*(cols+2)*sizeof(float));
-      if (this->elements == NULL) {
+      this->elements = (float*) calloc(rows*cols*sizeof(float), sizeof(float));
+      if (this->elements == nullptr) {
         printf("Error allocating memory for matrix. Tried to allocate %zu bytes.\n", (rows*cols*sizeof(float)));
         exit (EXIT_FAILURE);
       }

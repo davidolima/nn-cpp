@@ -3,7 +3,6 @@
 #include <cassert>
 
 #include "nn.h"
-#include <cassert>
 
 using namespace la;
 

@@ -1,4 +1,7 @@
 #!/usr/bin/env sh
 
-g++ -Wall -Wextra -Wpedantic -o main.o main.cpp nn.cpp la.cpp operators.cpp -ggdb
-g++ -Wall -Wextra -Wpedantic -o tests.o tests.cpp nn.cpp la.cpp operators.cpp
+echo [!] Compiling main...
+g++ -ggdb -Wall -Wextra -Wpedantic -o main main.cpp nn.cpp la.cpp operators.cpp
+echo [!] Compiling tests...
+g++ -Wall -Wextra -Wpedantic -o test test.cpp -ggdb
+echo [!] Done!
