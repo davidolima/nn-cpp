@@ -48,7 +48,7 @@ int main(){
   };
 
   A = la::fromVector(elements);
-  B = la::generic(3,4);
+  B = la::generic(3,3);
 
   if ( A != B ) {
       printf("Generic constructor failed.");
