@@ -6,10 +6,10 @@
 The plan is to create a very basic framework capable of creating and training neural networks.
 I decided to create this project to better understand the inner workings of artificial intelligence and to improve my C++.
 
-## Compilation
+## Running tests
 
 ``` shell
-./build.sh
+./run_tests.sh
 ```
 
 ## Linear algebra API
